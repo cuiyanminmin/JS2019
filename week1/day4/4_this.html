@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        this 普通函数内部的一个关键字，代表函数的执行主体；箭头函数中没有this（在箭头函数中就是一普通变量）；
+        自执行函数中的this是 window
+        定时器中的this 是window
+        事件绑定中this 是绑定的当前元素
+        其他看点，函数执行时 点前边儿是谁,this就是谁，没点就是 window
+
+     */
+     !function (){
+         console.log(this)
+     }();
+     ~function (){
+         console.log(this)
+     }();
+     (function(){
+         console.log(this)
+     })();
+     
+</script>

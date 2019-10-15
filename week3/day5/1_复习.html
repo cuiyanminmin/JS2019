@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        正则：匹配 test  捕获exec
+            字面量 var reg = /q/g
+            构造函数 var reg = new RegExp('q','g')
+        
+        特殊元字符
+        \d     0-9
+        \D     取反
+        \w      数字字母下划线
+        .       除换行以外的任意字符
+        ^
+        $
+        []
+        [ab]
+        [^ab]
+        [.]
+        ()      分组
+
+        量词元字符
+        ？   0或1次
+        *   0到多次
+        +   1到多次
+        {n} n次
+        {n,m}n到m次
+        {n,} n到多次
+        修饰符
+        i
+        m 
+        g
+        var reg = /\d+/img
+        
+     */
+        var str = 'zf2020zf2021'
+        var reg = /\d/;
+        reg.test(str)
+
+        //53423441998323421X  1970-2019年 01-12  01-31
+        //1970-2019年  1970-1999 2000-2019
+        //01-12 01-09 10-12
+        //01-31 01-09 10-29 30-31
+        //01-19 思考
+        var reg = /^\d{6}(19[7-9]\d|20[01]\d)(0[1-9]|1[0-2])(0\d|[12]\d|3[01])\d{2}()[\d|X]$/
+        
+        //00:00-23:59  00-23 00-19  20-23;00-59 
+        var reg = /^([01]\d|2[0-3])[:：][0-5]\d$/
+
+        //捕获：把字符串中符合正则的部分获取到
+        //贪婪性 一次性能拿多少就拿多少 解决办法 加一个 ？
+        //懒惰性 就拿一次               解决办法 加全局修饰符 g
+        //正则有g属性 会影响正则的lastIndex属性；
+
+        var reg = /\d+/;
+        var str = 'zf2020zf2021';
+        reg.exec(str);//["2020"]
+
+        //字符串中的方法 match split replace
+        //match 加上g之后，可以一次性把所有的大正则捕获的内容全部获取到，但是获取不到小分组的内容
+        var reg = /\d+/;
+        var str = 'zf2020zf2021';
+        var res = str.match(reg)
+
+        var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqq';
+        function getParam(url){
+        var reg = /([^?=&#]+)=([^?=&#]+)/g;
+        var arr = url.match(reg)
+        var obj={};
+        arr.forEach(item=>{
+            var a = item.split('=');
+            obj[a[0]]=a[1]
+        })
+
+        return obj
+    }
+    getParam(str)
+
+    //split('+')  split(/\d+/)
+    var str = 'aereae123aera123aera456aera48'
+    console.log(str.split(/\d+/g))
+    console.log(str.split(/\d/))
+
+    //replace('-','/')
+    var str ='2019-09-21';
+    console.log(str.replace('-','/').replace('-','/'))
+    console.log(str.replace(/-/g,'/'))
+    var res = str.replace(/-/g,function(){
+        return '/'
+    })
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqq';
+    function getParam1(url){
+        var reg = /([^?=&#]+)=([^?=&#]+)/g;
+        var obj={};
+        url.replace(reg,function(a,b,c){//a是整个正则捕获到的b是第一个小分组 c是第二个小分组
+            //回调函数执行次数是由字符串中有几个符合reg决定的
+            obj[b]=c
+        })
+        return obj;
+    }
+    getParam1(str)
+
+</script>

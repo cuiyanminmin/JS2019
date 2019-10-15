@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .litImg{
+            width:400px;
+            height:200px;
+            display: block;
+            margin:50px;
+        }
+        .bigImg{
+            width:800px;
+            height:400px;
+            display:none;
+            position:absolute;
+        }
+        .mask{
+            width:300px;
+            height:300px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="litImgBox">
+        <img src="./img/1.jpg" alt="" class="litImg">
+
+        <img src="./img/2.jpg" alt="" class="litImg">
+        <div class="mask"></div>
+    </div>
+    <div class="bigImgBox">
+            <img src="./img/1.jpg" alt="" class="bigImg">
+    
+            <img src="./img/2.jpg" alt="" class="bigImg">
+            <div class="mask"></div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+
+    var litImgs = document.getElementsByClassName('litImg'),
+         bigImgs = document.getElementsByClassName('bigImg'),
+         mask = document.getElementsByClassName('mask');
+    for(let i=0;i<litImgs.length;i++){
+        litImgs[i].onmouseenter = function(){
+            bigImgs[i].style.display="block";
+            mask[i].style.display = "block";
+           
+            litImgs[i].onmousemove = function(e){
+            let {pageX,pageY} =e;
+            bigImgs[i].style.left = e.pageX+100+'px';
+            bigImgs[i].style.top = e.pageY+0+'px';
+            let x = e.clientX,
+                y = e.clientY;
+            mask[i].style.top = x+'px';
+            mask[i].style.left = y +'px';
+        }
+        }
+        litImgs[i].onmouseleave = function(){
+            bigImgs[i].style.display="none";
+            mask[i].style.display ="none";
+            bigImgs[i].onmousemove = null;
+        }
+       /*  mask[i].onmouseenter = function(e){
+            
+        } */
+           
+         
+    }
+    $('.bigImg').eq(0).on('click',function(e){
+
+    })
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //实现一个判断数据类型的方法 getType()
+
+    Object.prototype.getType = function () {
+        var str = this.constructor.toString()
+        str = str.slice(9, str.indexOf('('))
+        return str
+    }
+    var res = ''.getType(); //string
+    (1).getType(); //number
+    [].getType(); //array
+    console.log(res)
+
+    //myPop myPush
+
+    Array.prototype.myPop = function () {
+        this.length--
+        return this
+    }
+    Array.prototype.myPush = function (...ary) {
+       /*  var temp = this.concat([...ary])
+        return temp */
+        /* var l = ary.length;
+        for (var i = 0; i < l; i++) {
+            this[this.length] = ary[i]
+        }
+        return this */
+    }
+    var ary = [1, 2, 3, 4, 5]
+
+    ary.myPop().myPush(6, 6, 6).myPop().myPush(4, 5)
+
+    //myReverse 等同于 reverse
+    Array.prototype.myReverse = function () {
+        for (var i = 0; i < this.length / 2; i++) {
+            var temp = this[i];
+            this[i] = this[this.length - 1 - i];
+            this[this.length - 1 - i] = temp;
+        }
+        return this
+    }
+    ary.myReverse()
+
+    Array.prototype.myUnique = function () {
+        /* var arr = [...new Set(this)]
+        this.length = 0;
+        this.push(...arr) */
+        /* for(var i=0;i<arr.length;i++){
+            this.push(arr[i])
+        } */
+        /* this.forEach(item=>{
+            this.push(item)
+        }) */
+        //   return this
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i];
+            if (obj.hasOwnProperty(temp)) {
+                //思考：把i 这一项 跟最后一项交换位置 然后删除最后一项；
+                this.splice(i, 1);
+                i--;
+            } else {
+                obj[temp] = temp
+            }
+
+        }
+        return this;
+    }
+    //indexOf lastIndexOf 获取的值一样 这就是不重复的
+    var ary = [1, 2, 3, 2, 1, 5, 4, 8, 47, 2, 3]
+    ary.myUnique()
+</script>

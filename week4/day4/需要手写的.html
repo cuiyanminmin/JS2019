@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //**********************************type of
+    function getType(ele){
+        let m = Object.prototype.toString.call(ele);
+        let n = m.slice(8,m.length-1);
+        return n.toLowerCase();
+    }
+    let ary = [1,2,3]
+    console.log(getType(ary))
+    //**********************************isNaN
+    function myIsNaN(a){
+        let m = Number(a);
+        if(m+'' ==='NaN'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    myIsNaN('1a')
+    //**********************************选项卡
+    //**********************************call
+    function fn(a,b,c){
+        console.log(a+b+c);
+        console.log(this)
+    }
+    let obj={
+        a:123,
+        b:234
+    }
+    Function.prototype.myCall = function(context,...arg){
+        context = context || window;
+        let m = Symbol();
+        context[m] = this;
+        let res = context[m](...arg);
+        delete context[m];
+        return res
+
+    }
+    fn.myCall(obj,1,2,3)
+    //***********************************apply
+    function fn(a,b,c){
+        console.log(a+b+c);
+        console.log(this)
+    }
+    let obj={
+        a:123,
+        b:234
+    }
+    Function.prototype.myApply = function(context,arg){
+        context = context || window;
+        arg = arg || [];
+        let m = Symbol();
+        context[m] = this;
+        let res = context[m](...arg);
+        delete context[m];
+        return res
+    }
+    fn.myApply(obj,[1,2,3])
+    //**********************************new
+    function myNew(...arg){
+        let constructor = arg.shift();
+        let obj={};
+        obj.__proto__ = construcot.prototype;
+        let res =  constructor(...arg)
+        return typeof res==="object"?res:obj;
+    }
+    myNew(Person,"珠峰",10)
+    //******************************bind
+    function fn(a,b,c){
+        console.log(a+b+c);
+        console.log(this)
+    }
+    let obj={
+        a:123,
+        b:234
+    }
+    Function.prototype.myBind = function(context,...arg){
+        context = context || window;
+        return function a(...ary){
+            return 
+        }
+    }
+    let f = fn.myBind(obj,1,2,3)
+    f(8,8,8)
+    //**********************************把字符串按照顺序排序
+    let str = 'geoeuduaiiuierjdi';
+    let arr = str.split('');
+    let ary = arr.sort((a,b)=>{
+       return a.localeCompare(b);
+    })
+    console.log(ary.join(''));
+   //****************************把下列数组排序
+   var ary = [
+        {
+        name:'小红',
+        age:10
+        },
+        {
+        name:'小花',
+        age:103
+        },
+        {
+        name:'小明',
+        age:1
+        },
+        {
+        name:'小李',
+        age:120
+        }
+    ]
+    let res = ary.sort((a,b)=>{
+        return (a.name).localeCompare(b.name)
+    })
+    console.log(res)
+    //*********************************出现字符串最多的
+    let str="abcabcdddererrauiu";
+
+</script>

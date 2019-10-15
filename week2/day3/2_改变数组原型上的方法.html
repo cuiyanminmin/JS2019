@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //内置类的原型上的方法可以被修改 但是不能被重构；
+    Array.prototype.pop=function(){
+        console.log(666);
+    }
+    Array.prototype={};//内置类的原型不能重构，不起作用
+    var ary=[1,2,3,4];
+    ary.pop();
+    console.log(ary);
+    var ary=[1,2,3,4,12,5,2,3,2,3,4,5,2,3,5]
+    Array.prototype.unique=function(){
+        /*
+        //对象去重
+         var obj={};
+        this.forEach(item=>{
+            obj[item]=item;
+        })
+        this.length=0;
+        for(var k in obj){
+            this.push(obj[k])
+        } */
+       
+        
+        // let arr=[...new Set(this)]
+        // console.log(arr)
+        // this.length=0;
+        // arr.forEach(item=>this.push(item))
+        /* 
+        var obj={};
+        for(var i=0;i<this.length;i++){
+            if(obj.hasOwnProperty(this[i])){
+                this.splice(i,1);
+                i--;
+            }
+            else{
+                obj[this[i]]=this[i]
+            }
+        } */
+    }
+    Array.prototype.myPop = function(){
+        //this 都是当前类的实例
+        let temp=this[length-1];
+        this.length--;
+        return temp
+    }
+    ary.myPop();
+    ary.unique();
+    console.log(ary)
+</script>

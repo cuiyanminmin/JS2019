@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+  /*   $.ajax({
+        url:'./data.json';
+        success:function(){
+            $.ajax({
+                url:'./data.json',
+                success:function(){
+
+                }
+            })
+        }
+    }) */
+    //为了不让获取的 那么复杂 有的promise
+    //executor  指函数
+    //Promise 实例有三个状态 分别是 pending (等待状态) resolved (成功执行回调) rejected ()
+            //peding   代表当前的Promise还是处在 等待状态
+            //resolved 代表当前走了成功的回调函数
+            //rejected 代表当前走了失败的回调函数
+        //状态一旦修改 就不会在发生任何改变
+/*     let p = new Promise(function(res,rej){//回调函数 (resolve,reject)   cdn加速 mdn官方文档
+        //res 是执行成功对应的回调函数 
+        //rej 是执行失败对应的回调函数
+        //具体是执行成功还是失败 是由 书写executor函数的这个人决定的
+        setTimeout(()=>{
+            rej(eee) //当这没有写的话一直是等待状态    
+            // res(123);
+        },3000);
+        // res(qqq)
+    });
+    // console.log(p)
+    //then 接收两个函数作为参数 第一个函数对应 resolve 第二函数对应 reject
+    p.then(function(data){
+        console.log('success')
+        console.log(data);
+    },function(err){
+        console.log('error')
+        console.log(err)
+        // console.log(aaa)
+    }).then(function(data2){
+        console.log('data2',data2)
+    },function(err2){
+        console.log('err2',err2)
+    }) */
+    //try cathch
+   /*  let p = new Promise(function(res,rej){
+        $.ajax({
+            url:'./data.json',
+            success:res,
+            error:function(data){
+                console.log(data)
+                // res(data)
+            },
+            // error:rej
+        })
+    });
+    p.then(function(data){
+        //then 可以写两个参数 也可以只写一个参数，写一个参数对应的是成功的回调；失败信息我们可以通过catch捕获
+        console.log(data);
+        return new Promise(function(res,rej){
+            res(666)
+        });
+    }).then(function(data2){
+        console.log(data2)
+    }).catch(function(err){
+        //catch 是捕获失败的
+        console.log(err)
+    }); */
+
+    //为异步而生 
+    new Promise(function(res,rej){
+        rej(123)
+        console.log(666)
+    }).then((data)=>{
+        console.log(data)
+    }).catch((err)=>{
+        console.log(err)
+        return 1111
+    }).finally((data)=>{
+        console.log(data)//最后执行的
+    });
+    console.log(9999);//then里边儿的后出来 先输出666   9999  123
+</script>

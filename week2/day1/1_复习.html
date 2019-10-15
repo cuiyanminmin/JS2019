@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+</body>
+
+</html>
+<script>
+    // 'use strict'//严格模式
+    /* 
+        变量提升：在代码执行之前；然后把代码中带var跟带funciton的提前声明一下
+        只提升等号左边的，return 后边的也不提升
+            let const 暂时性死区；
+            {if for}function 只声明不定义
+        垃圾回收机制：堆内存 谷歌 定时清除    火狐 计数；
+                     栈内存：关闭页面可以回收全局作用域占用的栈内存；
+                            私有作用域占用的 栈内存；返回值时引用数据类型的或者有外部占用函数内部的某些内容；这种栈内存时不会被回收的
+        window.open('https://baidu.com')打开相应的页面的  不支持异步
+
+        全局作用域---》全局变量：在全局作用域声明
+        私有作用域---》私有变量：形参 在私有作用域声明
+        块级作用域---》私有变量：只能针对 let和const声明的变量起作用；
+
+        作用域链：变量的查找机制；
+
+     */
+    function f() {
+        a = 123
+    }
+    f()
+    console.log(a) //不会报错，相当于给全局中a=123
+
+    var btns = document.querySelectorAll('button');
+    // [...btns].forEach((item,index)=>{
+    //     item.onclick=function(){
+    //         alert(index)
+    //     }
+    // })
+
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = (function (i) {
+            return function () {
+                alert(i)
+            }
+        })(i)
+    }
+
+
+    var a = 1;
+    var obj = {
+        "name": "tom"
+    }
+
+    function fn() {
+        var a2 = a;
+        obj2 = obj;
+        a2 = a;
+        obj2.name = 'jack';
+    }
+    fn();
+    console.log(a);
+    console.log(obj);
+</script>

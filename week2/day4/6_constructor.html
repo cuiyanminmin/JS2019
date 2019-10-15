@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function getType(temp){
+        console.log(temp.constructor.toString===Function.prototype.toString)
+        var str = temp.constructor.toString();
+        return str.slice(9,str.indexOf('(')).toLowerCase();
+        
+    }
+    var res = getType('')//string
+    var res1 = getType([])//array
+    console.log(res,res1)
+
+    //原型重构 只针对自定义类
+   /*  function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.eat = function(){
+        console.log('吃火锅');
+    }
+    var p = new Person('小红',100);
+    Person.prototype = {
+        constructor:Person,
+        eat(){
+            console.log('吃水果')
+        },
+        play(){
+            console.log('玩游戏')
+        }
+    }
+    var p1 =new Person('小明',10)
+    var res2 = getType(p1)
+    console.log(res2)
+    p.eat();
+    p1.eat();
+    p1.play(); */
+
+    var obj = {
+    name: " 小明",
+    skill: ["css3", "html5", "es6", "react", "angular"],
+    say: function () {
+        for(let i=0;i<this.skill.length;i++){
+            setTimeout(() => {
+                console.log(`${this.name}会${this.skill[i]}`)
+            }, 1000*(i+1));
+        }
+    }
+}
+// obj.say(); 
+// 上述函数执行的时候  一秒一输出   小明 会 css3 ； 小明会 html5 ; ....
+/* function Person(name,skill){
+    //name和skill属于私有属性，因为每个人的姓名和技能都不一样；
+    //say属于共有；所有的人都会说一样的套路话
+    this.name = name;
+    this.skill = skill;
+
+}
+Person.prototype.say = function(){
+    for(let i=0;i<this.skill.length;i++){
+            setTimeout(() => {
+                console.log(`${this.name}会${this.skill[i]}`)
+            }, 1000*(i+1));
+        }
+}
+var p = new Person('小明',["css3", "html5", "es6", "react", "angular"])
+var p1 = new Person('小红',["吃", "睡", "玩", "跑", "跳"])
+p1.say();
+p.say() */
+
+/* class Person{
+    constructor(name,skill){
+        this.name = name;
+        this.skill = skill;
+    }
+    say(){
+        for(let i=0;i<this.skill.length;i++){
+            setTimeout(() => {
+                console.log(`${this.name}会${this.skill[i]}`)
+            }, 1000*(i+1));
+        }
+    }
+}
+var p = new Person('小明',["css3", "html5", "es6", "react", "angular"])
+p.say()
+var p1 = new Person('小红',["吃", "睡", "玩", "跑", "跳"])
+p1.say() */
+
+var name = '中国',
+    age = 5000;
+function Person() {
+    getName = function () {
+        console.log(this.name)
+    };
+    this.name = 'zfpx';
+    this.age = 9;
+}
+Person.name = '珠峰';
+Person.getName = function () {
+    console.log(this.name);
+};
+Person.prototype.getName = function () {
+    console.log(this.name);
+};
+var obj = {
+    name: '培训',
+    f: Person
+};
+var per = new Person();
+per.getName = function () {
+    console.log(12)
+};
+var per2 = new Person();
+obj.f();
+Person();
+per.getName();
+per2.getName();
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height:200px;
+            text-align: center;
+            line-height: 200px;
+            font-size:35px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="qqq www aaa zzz">珠峰培训</div>
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    console.log(box.classList);
+    //原生的方法，兼容性不好
+    //box.classList.add('qqqq');//添加类名 功能相当于我们的addClass(有就不添加，没有就添加)
+    //box.classList.remove('ww','zzz');//删除类名 功能相当于我们的removeClass(没有就不删)
+    //box.classList.contains('ww')//查看是否有对应的类名
+    //box.classList.toggle('www')//功能相当于我们的toggleClass(没有就添加，有就删除)
+
+
+    
+</script>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 1200px;
+            height: 500px;
+            margin: auto;
+        }
+
+        header {
+            width: 1195px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        header span {
+            padding: 0 10px;
+            
+            cursor: pointer;
+            user-select: none;
+        }
+        #mc li{
+            width:220px;
+            height:340px; 
+            border:1px solid #ccc;
+            margin-right:20px;
+        }
+        #mc li:nth-child(5n){
+            margin-right:0;
+        }
+        /* .imgBox{
+            margin:20px auto 15px;
+        } */
+        #mc .imgBox{
+            width:180px;
+            height: 180px;
+            margin:20px auto 15px;
+        }
+        .imgBox img{
+            height:100%;
+        }
+        #mc li{
+            position: relative;
+            float:left;
+        }
+        #mc li:hover{
+            border-color:red;
+        }
+        #mc .titl{
+            text-align: center;
+            
+        }
+        #mc .desc{
+            text-align: center;
+        }
+        #mc .price{
+            text-align: center;
+            color:red;
+        }
+        .botBox{
+            position:absolute;
+            border-top:1px solid #ccc;
+            height:30px;
+            line-height: 30px;
+            width:100%;
+            bottom:0;
+            left:0;
+            display:flex;
+        }
+        .botBox div{
+            flex:1;
+            text-align: center;
+        }
+        .botBox div:nth-child(1){
+            border-right:1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <header>
+            <span>排序：</span>
+            <span id="timeBtn">上架时间：</span>
+            <span id="priceBtn">价格</span>
+            <span id="commBtn">评价数：</span>
+        </header>
+        <main>
+            <ul id="mc">
+                <li>
+                    <div class="imgBox">
+                        <img src="https://img1.360buyimg.com/n6/jfs/t1/10114/13/497/137584/5bdad733Ee4103e2b/ba2c3d225972eb9c.jpg"
+                            alt="">
+                    </div>
+                    <div class="titl">手机名</div>
+                    <div class="desc">手机描述</div>
+                    <div class="price">￥1000.00</div>
+                    <div class="botBox">
+                        <div class="chose">选购</div>
+                        <div class="num">评价数</div>
+                    </div>
+                </li>
+            </ul>
+
+        </main>
+    </div>
+</body>
+
+</html>
+<script src="./test.js"></script>

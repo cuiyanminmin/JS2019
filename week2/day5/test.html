@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    
+</body>
+
+</html>
+<script>
+   //-----------------改变pop方法，让pop从后边儿删除指定的 个数，并且把删除的项组成一个新的数组返回
+   Array.prototype.myPop = function(n=1){
+     n = n>this.length? this.length:n;
+    var arr = this.slice(this.length-n)
+    this.length -= n;
+    return arr
+
+   }
+   var ary = [1,2,3,4,5,6]
+   ary.myPop(5)
+   //max数组中的最大值  
+   Array.prototype.myMax = function(){
+    /* return this.sort((a,b)=>{
+        return b-a
+    })[0] */
+   /*  return Math.max(...this) */
+    return Math.max.apply(Math,this)
+   }
+   var ary = [20,10,30,20,50,100,20,10,30,101,15]
+   ary.myMax();
+   //------average数组的平均值
+   Array.prototype.myAverage = function(){
+    return eval(this.join('+'))/this.length
+   }
+   var ary = [1,2,3,4,5,6] ;
+   ary.myAverage()
+   //----------------封装一个new 方法 开辟一个堆内存，把这个堆内存的__proto__指向所属类的原型 执行的时候返回的this是新开辟的这个堆内存 判断返回的类型是不是引用数据类型，如果是引用数据类型就把返回的this指向这个引用数据类型，如果不是返回的this就是新开辟的这个堆内存
+   function myNew(classN,...arg){
+    var obj = {};
+    obj.__proto__ = classN.prototype;
+    var res = classN.call(obj,...arg)
+    return typeof res =='object'?res:obj
+   }
+   var ary = myNew(Array,10,20);
+   //-----封装一个myinstanceof 方法
+   function myInstanceof(L,O){
+       if(typeof L !=='object'&&typeof L !=='function')return false;
+        var L = L.__proto__;
+        var O = O.prototype;
+        while(L){
+            if(L == O){
+                return true
+            }
+            else{
+                L = L.__proto__;
+            }
+        }
+        return false
+   }
+   myInstanceof([],Object)
+   //------自己封装一个myApply 方法
+
+   // ------------自己封装一个myBind方法
+   //-------------自己封装一个call
+   function fn(){
+       console.log(arguments);
+       console.log(this)
+   }
+   var obj = {name:123,
+              age:235}
+   Function.prototype.myCall = function(context,...arg){
+        
+        var  n = symbol();
+        context[n] = this;
+       var res = context[n](...arg);
+        delete context[n];
+        return res
+   }
+   fn.call(obj,1,2,3)
+   
+   //---------继承
+   //------自己封装create
+
+</script>

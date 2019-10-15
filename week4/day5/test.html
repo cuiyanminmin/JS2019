@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    //*******************************************************************************************
+    var str = "http://baidu.com.cn?aa=123&bb=234#zf";
+    function getParam(url){
+        let reg = /([^?=&#]+)=([^?=&#]+)/g;
+        let obj={};
+         url.replace(reg,function(a,b,c){
+            obj[b] = c
+        })
+        if(/#(.+)/.test(url)){
+            obj.hash = url.match(/#(.+)/)[1]
+        }
+        return obj
+    }
+    getParam(str)
+    //******************************************************************************
+    var str = "http://baidu.com.cn?aa=123&bb=234#zf";
+    String.prototype.getParam = function(key){
+        let reg = /([^?=&#]+)=([^?=&#]+)/g;
+        let obj={};
+        this.replace(reg,function(a,b,c){
+            obj[b]= c;
+        })
+        if(key){
+            return obj[key]
+        }
+        else{
+            return obj
+        }
+        
+    }
+    str.getParam('aa')
+    //*****************************************************************************************
+    function getParam1(url){
+        let reg = /([^?=&#]+)=([^?=&#]+)/g;
+        let arr = url.match(reg);
+        let obj={};
+        arr.forEach(item=>{
+            let a = item.split('=');
+            obj[a[0]] = a[1]
+        })
+        if(/#(.+)/.test(url)){
+            obj.hash = url.match(/#(.+)/)[1]
+        }
+        return obj
+    }
+    getParam1(str)
+    //**********************************************************************************************
+    Function.prototype.myBind =function (context,...arg){
+       
+    }
+    let f = fn.myBind(obj,1,2,3)
+    f(8,8,8,8)
+
+    let template = '我是{{name}},年龄{{age}},性别{{sex}}';
+    let data ={
+        name:'小明',
+        age:18
+    }
+    function Template(template,data){
+       let reg =/\{\{(\w+)\}\}/g;
+       let str = template.replace(reg,function(a,b){
+           return data[b]?data[b]:'未知'
+       })
+       return str
+    }
+    Template(template,data)
+    //**********************************************************************************************
+    var str = 'adaaaaareeteeerweeaeee';
+    function getMax2(str){
+        let arr = str.split('');
+        let str1 = arr.sort().join('');
+        let reg = /(\w)\1*/g;
+        let num = 0,key = '';
+        str1.replace(reg,function($0,$1){
+            if($0.length>num){
+                num = $0.length;
+                key = $1
+            }
+        })
+        return {
+            num,key
+        }
+    }
+    getMax2(str)
+</script>

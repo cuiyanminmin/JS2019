@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.box{
+    width:800px;
+    height:250px;
+    border:1px solid #ccc;
+    margin:auto;
+    position:relative;
+    top:200px;
+}
+.header{
+    height:50px;
+    line-height: 50px;
+    padding: 0 0 0 50px;
+    background:rgb(205, 205, 206);
+}
+.header .h_log,.header .h_size,.header .h_meea,.header .h_message{
+    border:1px solid slategray;
+    padding:2px 30px 2px 5px;
+}
+
+.body .log,.body .size,.body .meea,.body .message{
+    height:50px;
+    overflow: hidden;
+    line-height: 50px;
+    padding: 0 0 0 20px;
+    border-bottom:1px dashed slategray;
+    width:700px;
+    margin:auto;
+}
+.body .message{
+    border-bottom:none;
+}
+.body .log li,.body .size li,.body .meea li,.body .message li{
+    float:left;
+    margin-right:20px; 
+}

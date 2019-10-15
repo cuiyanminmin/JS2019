@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="text" placeholder="身份证" id="inp">
+        <button id="btn">解析</button>
+        <h2 id="box">这个人的出生年月日时1998年03月09日 性别是男</h2>
+</body>
+</html>
+<script>
+    //**********************用正则封装getType方法************************************
+    //**********************用正则封装execAll方法************************************
+    //**********************用正则封装getParam方法(加上哈希)***********************************
+    var str='珠峰2019zf2020,666'
+    var reg =/\d+/
+    RegExp.prototype.execAll = function(str){
+        let _this = this;
+        if(!this.global){
+            //_this = eval(_this+'g')
+            var s = /^\/(.+)\/$/.exec(_this)[1];
+            _this = new RegExp(s,'g')
+        }
+       var res = _this.exec(str);
+       var arr = [];
+       while(res){
+        arr.push(res);
+        res = _this.exec(str)
+       }
+       return arr
+    }
+    reg.execAll(str)
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqq';
+    function getParam(url){
+        var reg = /([^?=&#]+)=([^?=&#]+)/;
+        var arr = reg.execAll(url);
+        var obj={}
+        arr.forEach(item=>{
+            obj[item[1]]=item[2]
+        })
+        if(/#(.+)/.exec(url)){
+            obj.hash = /#(.+)/.exec(url)[1]
+        }
+        return obj;
+    }
+    getParam(str)
+    Object.prototype.getType = function(){
+        var arr = Object.prototype.toString.call(this);
+        var reg = / (\w+)/g;
+        var a = reg.exec(arr)[1]
+        console.log(a)
+        return a.toLowerCase()
+    }
+    ''.getType()
+    
+</script>

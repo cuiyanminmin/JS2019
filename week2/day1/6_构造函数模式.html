@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //工厂模式
+    function factory(name, age=10, sex,cb) {//es6赋默认值
+        sex=sex||1;                         //es5赋默认值
+        name=name||'zf';                    //es5赋默认值
+        cb&&cb();
+        var obj = {
+            name,
+            age,
+            sex,
+            eat() {},
+            play() {}
+        }
+        return obj;
+    }
+    var per11 = factory('小明', 10, 1);
+    console.log(per11)
+    per2=factory(null,null,null);
+    
+    function Person(name,age,sex){
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        this.eat=function(){}
+        this.play=function(){}
+    }
+    var per2=Person('zf',100,0);
+    var per22=new Person('zf',100,0); //per22是 Person的一个实例
+    //new 执行函数的时候 函数内部的this 都是指向了一个堆内存；函数执行完成之后；又把this返出去了
+    //若写了返回值 但是返回的是一个值类型；那么默认返回仍然是this；
+    //若返回值是个引用数据类型，则返回值就默认是这个引用数据类型
+    var ary=new Array();//ary是Array的一个实例
+    console.log(per22);
+    var FN=function(){
+        this.name=123;
+        this.age=234
+    }
+    var f=new FN;
+    console.log(f);
+    //es6的箭头函数是不能通过new的方式执行
+    //es6创造类的方式是通过class创造的
+    var FN2=()=>{
+        this.name=111;
+    }
+    // console.log(new FN2);
+    class FN3{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+    }
+    var f3=new FN3('小明',100);
+    console.log(f3)
+    
+    
+</script>

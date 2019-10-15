@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            box-sizing:border-box;
+        }
+        #outer{
+            width:500px;
+            height:500px;
+            background:red;
+            margin:50px auto;
+            padding:50px;
+        }
+        #center{
+            width:400px;
+            height: 400px;
+            background:blue;
+            padding:50px;
+        }
+        #inner{
+            width:300px;
+            height: 300px;
+            background:salmon;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    //冒泡传播 一层层传播 根据结构来的  定位到其他位置也会触发传播（跟位置没有关系 跟结构有关系）
+    //点击穿透 因为有事件的传播
+    window.onclick = function(){
+        console.log('点了window');
+    }
+    outer.onclick = function(){
+        console.log('点了outer');
+    }
+    center.onclick = function(){
+        console.log('点了center');
+        
+    }
+    inner.onclick = function(e){//事件对象
+        e = e || window.event;
+        e.stopPropagation();//阻止事件的冒泡传播  
+        // e.cancelBubble = true;//IE的阻止冒泡
+        console.log('点了inner'); 
+    }
+    //事件传播的两个过程：捕获 冒泡
+    //捕获 从最外层开始捕获 冒泡 然后从里边儿往外边传播
+</script>

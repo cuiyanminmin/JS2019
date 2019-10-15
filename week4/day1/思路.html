@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //td标签的上级参照物是table，table没有定位，td的上级参照物也是table bug
+    /* 
+        1、获取数据  为什么要封装成一个函数，去实现获取数据的操作
+        2、渲染数据  把从后台获取到的数据展示到页面上，按照列来展示的，
+                    循环后台给的数组，然后把每一条数据拼接好，添加到长度最小的那一列
+                    这里封装了一个获取长度最小的列的方法 getMinLi
+                    把元素集合转成数组，，然后按照 clientHeight 进行排序，由此找到最低的那个li；
+        3、实现滚动加载更多，当长度最小的那个Li的底部露出来时，我们就去加载新的数据；loadMore 在window.onscroll里执行
+         为了防止一次性请求多次 我们做了一个flag的判断；只有当flag为false的时候，才去执行新数据的请求
+         当请求开始的时候 我们把flag置为true,渲染成功 我们把flag再置为false;
+        4、再加上图片懒加载的操作；loadImg(加载单个) loadAll(加载多个图片)
+            懒加载  就是当图片还没有出现到可视窗口的时候 不去加载图片，
+                    只有当图片露出来时 我们再去加载真正的图片
+            预加载  就是当图片要展示成真正的图片时，先用默认图展示，然后再利用JS创建一个临时的图片，让这张临时的图片去远程请求真正的图片，当请求成功之后，再把这个真实图片的地址赋给页面上的那个img标签
+        5、实现图片的渐显 fadeIn 利用定时器 对img进行 opacity的累加操作；（考试的时候可以不写这个）
+        加上faseIn会出现一个bug,渲染图片的时候会出现 bug
+    
+    */
+   function offset(ele){
+       let t = ele.offsetTop,
+           l = ele.offsetLeft;
+       let temp = ele.offsetParent;
+       while(temp){
+           t += temp.offsetTop+temp.clientTop;
+           l += temp.offsetLeft+temp.clientLeft;
+           temp = temp.offsetParent;
+       }
+       return {
+           l,t
+       }
+
+   }
+</script>

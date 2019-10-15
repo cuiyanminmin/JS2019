@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+      typeof一般用于检测基本数据类型（放回值为字符串的数据类型） 两个及以上检测到的是字符串   
+     */
+    //***********************************手写typeof******************************************
+     function gettype(a){
+         var str=Object.prototype.toString.call(a)//这个方法里不加引号
+        var res=str.slice(8,str.length-1)
+        return res.toLowerCase();
+     }
+    
+     re=gettype([])
+     re1=gettype(1)
+
+     console.log(re,re1)
+     //***********************************手写isNaN*********************************************
+     function myIsNaN(n){
+         var m=Number(n);
+         if(m+''==='NaN'){
+             return true
+         }
+         return false;
+     }
+     myIsNaN()
+
+     
+</script>

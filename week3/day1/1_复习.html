@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        面向对象
+        面向过程
+        单例  高级单例  工厂模式 构造函数模式 原型模式（一般用于框架）
+        
+        原型链：属性的查找机制，先在自己身上查找对应的属性 没有的话 就会__proto__查找所属类的原型
+
+        function 声明类
+        函数的三种角色 普通函数 构造函数 普通对象
+        Array.from();
+
+        class 类名{
+            constructor(形参){
+                函数体
+            }
+            say(){}
+            static fn(){} //类名.fn = function(){}
+        }
+     */
+     class Person{
+         constructor(name){
+             this.name = name
+         }
+         say(){
+             console.log(`my name is ${this.name}`)
+         }
+         static fn(){
+             console.log('静态属性')
+         };
+         static fn2(){
+             console.log('静态方法2')
+         }
+        //  static qqq = 123
+     }
+     var p = new Person('珠峰');
+     class Child extends Person{
+         constructor(name){
+             super();//必须用到this的上边儿
+             this.name = name;
+         }
+     }
+     var c = new Child('小明');
+
+     function Man(){
+
+     }
+     function boy(){
+        Man.call(this)
+     }
+     //boy.prototype = Object.create(Man.prototype);
+
+     //在数组的原型上 补一个方法del(n)可以随机删除 n 项；返回值是删除的项组成的新数组
+     
+     Array.prototype.del = function(m){
+        
+        var m = m>this.length?this.length:m
+        var arr = [];
+        for(var i = 0;i<m;i++){
+            var n = Math.round(Math.random()*(this.length-1))
+            arr = arr.concat(this.splice(n,1))
+        }
+        return arr
+     }
+     var ary = [1,2,3,4,5,6]
+     console.log(ary.del(2))//随机删除两项;返回值是 删除的项组成的新数组
+
+     //在字符串的原型上 补一个方法 url.getParam（url) 该方法 可以获取url中的参数部分及hash 部分
+     var str = 'https://baidu.com?a=12&bb=13&_c=14V#hello';
+     String.prototype.getParam = function(key){
+         var str2 = this.split('?')[1]
+         var str3 = str2.split('V#')[0]
+         var arr= str3.split('&')
+         var arr1 = str2.split('V#')[1]
+         var obj = {}
+         arr.forEach(item=>{
+            var arr2 = item.split('=')
+            obj[arr2[0]]=arr2[1]
+         })
+         obj.hash = arr1
+         return key ?obj[key]:obj
+         
+     }
+     str.getParam('bb')//{a:12,b:12,_c:13,hash:'hello'}
+     
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        原型模式： 在构造函数的基础上加了一个原型（prototype）的概念 原型模式的优点：公用 省空间
+
+    */
+
+   function Person(name='zf',age=10,sex=1){
+       this.name=name;
+       this.age=age;
+       this.sex=sex;
+   }
+   console.log(Person.prototype)
+   Person.prototype.eat=function(){
+       console.log('吃')
+   }
+   Person.prototype.play=function(){
+       console.log('玩');
+   }
+   Array.prototype.qqq=function(){
+       console.log(this.toString())
+   }
+   var p1=new Person();
+   var p2=new Person();
+   console.log(p1,p2)
+
+   //class声明的东西只能通过new的方式执行；
+   class Fn{
+       constructor(name,age){
+        this.name=name;
+        this.age=age;
+       }
+       eat(){
+
+       }
+       play(){
+
+       }
+   }
+   var f=new Fn();
+   console.log(f);
+</script>

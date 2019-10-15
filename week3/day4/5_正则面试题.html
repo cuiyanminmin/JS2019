@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //**********************一个字符串中出现次数最多的字符；****************************************
+    var str = 'accccccccccc'
+    function getMax(str){
+        //循环数组放到对象里
+        var obj={};
+        for(let i=0;i<str.length;i++){
+            if(obj.hasOwnProperty([str[i]])){
+                obj[str[i]] +=1;
+            }
+            else{
+                obj[str[i]] =1;
+            }
+        }
+        var num = 0, key = '';
+        for (var k in obj) {
+            if (obj[k] > num) {
+                num = obj[k];
+                key = k;
+            }
+        }
+        return {
+            key,num
+        }  
+    }
+    getMax(str)
+
+
+    var reg = /(\d+?)\1+/g;//\1代表第一个小分组再出现一次（回溯）
+    var str = '123123123';
+    reg.exec(str)
+    var reg = /(\w)(\w)(\w)\3\2\1/;//qweewq
+    reg.exec(str)
+
+    //******************************************************match*************************
+    var str = 'abcabcaabbadeaa'
+    function getMax2(str){
+        str = str.split('').sort().join('');//qqqqdddtttxxxnnnwa
+        let reg = /(\w)\1*/g;
+        var ary = str.match(reg);//['qqqqq','eeeee','rrrr']
+        ary.sort((a,b)=>{
+            return b.length - a.length
+        })
+        return{
+            key:ary[0][0],
+            val:ary[0].length
+        }
+    }
+
+    //*********************************************replace***************************************
+    function getMax3(str){
+        str = str.split('').sort().join('');//qqqqdddtttxxxnnnwa
+        let reg = /(\w)\1*/g;
+        let s='',n=0;
+        str.replace(reg,function(a,b){//第一个是大正则对应的内容，第二个是小分组匹配的内容
+            if(a.length >n){
+                n = a.length;
+                s=b;
+            }
+        })
+        return {
+                key:s,
+                val:n
+            }
+    }
+    getMax3(str);
+
+    //2、***********************************大小写反转********************************************
+    var str ='ABcefAbcEbE';
+    var str1=''
+    for(var i=0;i<str.length;i++){
+        let a = str[i]
+        if(a.toLowerCase()==a){
+            str1 += a.toUpperCase();
+        }
+        else{
+            str1 += a.toLowerCase();
+        }
+
+    }
+    console.log(str,str1)
+    
+
+    //***************************************************************************************
+    var str ='HELLo WorID';
+    function turn(str){
+        return str.replace(/\w/g,function(a){
+            return a.toLowerCase() ==a?a.toUpperCase():a.toLowerCase();
+        })
+    }
+    turn(str)
+
+     //***************************************************************************************
+     var str ='HELLo WorID';
+    function turn(str){
+       var reg = /([A-Z]*)([a-z]*)/g;
+       return str.replace(reg,function(a,b,c){
+           return b.toLowerCase()+c.toUpperCase()
+       })
+    }
+    turn(str);
+
+    //*****************************************************************************************
+    //小写数字 转大写    //var n=3842.22    叁仟捌佰肆拾贰元贰角贰分
+    var str = '今年是2017年'; //
+    var ary = ['零', '壹', '贰', '叁', '肆', '伍', '陆','柒', '捌', '玖', '拾'];
+    str.replace(/\d/g,function(n){//n代表大正则捕获到的内容
+        return ary[n]
+    })
+
+    //***************************************模板引擎*******************************************
+    //4、模板引擎
+    var str = '姓名是：{{name}},年龄是：{{age}},性别是{{sex}}';
+    var data ={
+        name:'小明',
+        age:10,
+        sex:'男'
+    }
+    function formate(template,data){
+        var reg = /\{\{(\w+)\}\}/g
+        return template.replace(reg,function(a,b){
+             return data[b]
+        })
+    }
+    formate(str,data)
+
+    var str ='今天是{{year}}年{{month}}月{{date}}日';
+    function formateTime(str){
+        let time = new Date();
+        let year = time.getFullYear();
+        let month = time.getMonth()+1;
+        let date = time.getDate();
+        let reg = /\{\{(\w+)\}\}/g;
+        return str.replace(reg,function(a,b){
+            return eval(b)//可以把year转成表达式
+        })
+    }
+    formateTime(str);
+
+    //*********************************************千分符****************************************
+    function formateMoney(str){
+        str = str.split('').reverse().join('');
+        let s='';
+        for(let i=0;i<str.length;i++){
+            i%3==2?s+=str[i]+',':s+=str[i]
+        }
+        s = s.split('').reverse().join('');
+        return s.replace(/^,/,'');
+    }
+    var str = '123456';
+    formateMoney(str)
+
+    //********************************************正则千分符**********************************
+    function formateMoney(str){
+        /* var reg = /(\d{1,3})(?=(\d{3})+$)/;
+        return str.replace(reg,'$1,') */
+        var reg = /\d{1,3}(?=(\d{3})+$)/g;
+        return str.replace(reg,function(a){
+            return a+','
+        })
+    }
+    var str = '123456';
+    formateMoney(str)
+</script>
