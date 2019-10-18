@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>
+            <span>一级菜单1</span>
+            <ul>
+                <li>
+                    <span>二级菜单1</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单1</span>
+                        </li>
+                        <li>
+                            <span>三级菜单2</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单2</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单3</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单3</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单2</span>
+            <ul>
+                <li>
+                    <span>二级菜单4</span>
+                    <ul>
+                        <li>
+                            <span>三级菜单4</span>
+                        </li>
+                        <li>
+                            <span>三级菜单5</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span>二级菜单5</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>一级菜单3</span>
+            <ul>
+                <li>
+                    <span>二级菜单6</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    //兄弟节点  box.nextElementSibling
+   //点击box 通过e.target判断点击的元素是不是span 是的话就让他的兄弟显示隐藏，不是就啥也不干
+   let box = document.getElementById('box');
+    box.onclick = function(e){
+        e = e || window.event;
+        var tar = e.target || e.srcElement;//tar就是点击的元素
+        if(tar.nodeName.toLowerCase()=='span'){//nodeName是对应的标签名
+            let nextE = tar.nextElementSibling;//这是span对应的哪个兄弟ul
+            nextE && nextE.classList.toggle('hide');//toggle有这个类名就删没有这个类名就增加  //nextE 有就做类名操作
+            if(nextE && nextE.classList.contains('hide')){//类名中含有hide
+                //自己遮住之后 所有的儿子都遮住
+                let uls = nextE.getElementsByTagName('ul');
+                for(let i=0;i<uls.length;i++){
+                    uls[i].classList.add('hide');
+                }
+            }
+        }
+    }
+    let $box = $('#box');
+    $box.on('click',function(e){
+        var tar = e.target;//原生对象
+        console.log(tar)
+        $tar = $(tar);//JQ对象
+        console.log($tar);
+        if(tar.nodeName.toLowerCase()=='span'){
+            let $nextE = $tar.siblings('ul');
+            $nextE.toggleClass('hidde');
+            if($nextE.hasClass('hide')){
+                $nextE.find('ul').addClass('hide')
+            }
+        }
+    })
+</script>
