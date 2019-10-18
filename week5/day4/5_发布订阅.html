@@ -24,6 +24,11 @@
             f.call(this,...arguments);
         })
     }
+    function off(f){
+        //取消订阅
+        let n = ary.indexOf(f);
+        ary.splice(n,1);
+    }
     function f1(){
         console.log(1,this);
     }
@@ -36,7 +41,7 @@
     on(f1);
     on(f2);
     on(f3);//订阅
-
+    off(f2)
     fire(666)//发布
     btn.onclick =  fire
 </script>
