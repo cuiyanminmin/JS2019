@@ -1,0 +1,26 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+#box{
+    margin:auto;
+    width:1349px;
+}
+.navigation {
+    height:30px;
+    line-height: 30px;
+    overflow:hidden;
+    margin:0 79.5px;
+}
+.navigation li:nth-child(1){
+    float:left;
+}
+.navigation  li{ 
+    float:right;
+}
+.navigation li:nth-child(9){
+    margin-right:8px;
+}
+
+

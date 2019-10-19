@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    //pending 等待状态 resolved 成功状态 rejected 失败状态
+    //状态一经改变 状态就不再发生任何改变；
+    let p = new Promise(function(resolve,reject){
+        //executor 函数   是回调函数  同步函数
+       /*  resolve(234);//同步把状态变成了 resolved；
+        // console.log(qqq);
+        reject(666);
+        console.log(999); */
+        /* setTimeout(()=>{
+            console.log(qqq);
+        },10); */
+        $.ajax({
+            url:'./data.json',
+            success:resolve,
+            error:reject
+        })
+    });
+    p.then(function(data){
+        //resolve
+        console.log(data);
+    },function(err){
+        //reject
+        console.log(err);
+    }).catch((err)=>{
+        console.log('catch',err)
+    }).finally(()=>{
+
+    });
+
+    Promise.all([p1,p2,p3].then((data)=>{},()=>{}));//都成功走前边儿的，碰到失败的就走后边儿的（如果第一个就是失败就直接走失败）
+    Promise.race([p1,p2,p3].then((data)=>{},()=>{}))//不管成功还是失败，谁先执行完成就走谁
+    Promise.reject('执行失败').then(()=>{},()=>{})//手动创造一个失败态
+    Promise.resolve('执行成功').then(()=>{},()=>{})//手动创造一个成功态
+</script>
