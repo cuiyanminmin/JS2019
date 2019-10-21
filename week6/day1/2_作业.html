@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="box"> 
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>
+
+<script>
+    var box = document.getElementById('box');
+    let li = document.createElement('li');
+            li.innerHTML = 4;
+        //   box.appendChild(li)
+        box.insertBefore(li,box.querySelector('li:nth-child(2)'))//在第二个li之前添加一个新元素
+        //box.inseertBefore(newEle,oldEld)//newEle新元素 oldEld 老元素 在老元素之前添加一个新元素
+        Element.prototype.insertAfter = insertAfter;
+        function insertAfter(newEle,originEle){
+            //=>newEle:新插入的元素
+            //=>originEle:指定的老元素
+            let next = originEle.nextElementSibling;//弟弟节点
+            if(next){
+                originEle.parentNode.insertBefore(newEle,next)
+            }else{
+                originEle.parentNode.appendChild(newEle)
+            }
+        }
+        box.insertAfter(li,box.querySelector('li:nth-child(2)'))
+
+
+       
+       
+</script>
