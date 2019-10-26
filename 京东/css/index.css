@@ -2,42 +2,121 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration: none
+    text-decoration: none;
 }
-
 #box {
     margin: auto;
-    width: 1349px;
+    width: 1366px;
 }
-
-.navigation {
+/* 导航栏 */
+#box #shortcut{
+    width:1366px;
+    border-bottom: 1px solid #ddd;
+    background-color: #e3e4e5;
+}
+/* 导航栏 */
+.navigation{
     height: 30px;
     line-height: 30px;
-    overflow: hidden;
     margin: 0 79.5px;
 }
-
-.navigation li:nth-child(1) {
-    float: left;
-}
-
-.navigation li {
+/* 导航栏左侧的定位 */
+.navigation ul>li {
     float: right;
 }
-
-.navigation .dt {
-    padding: 0 7px;
+.navigation ul li:nth-child(2){
+    margin-right:15px;
 }
-
-.navigation .ft {
-    padding: 0 20px 0 7px;
-}
-
-.navigation li a {
+.navigation ul .location_choose{
+    position: relative;
+    width:42px;
+    float: left;
+    left:22.5px;
     font-size: 12px;
     color: #999999;
 }
-
+/* 导航栏下的a标签 */
+.navigation ul>li a {
+    font-size: 12px;
+    color: #999999;
+    display:inline-block;
+    width:55px;
+    height: 28px;
+}
+.navigation ul .log .log_text{
+    display:inline-block;
+    width:72px;
+    height: 28px;
+}
+/* 当鼠标移上的时候，让定位里边儿的div显示 */
+.location{
+    display:none;
+    width:300px;
+    height: 416px;
+    padding:10px 10px 10px 18px;
+    background:#fff;
+    position: absolute;
+    left:0;
+    top:30px;
+    z-index:30;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 1px 2px 1px rgba(0,0,0,.1);
+    box-shadow: 1px 2px 1px rgba(0,0,0,.1);
+}
+.location_loc{
+    position: absolute;
+    z-index: 31;
+}
+.location_choose:hover .location_loc{
+    width:42px;
+    height: 28px;
+    color:#ff0000;
+    cursor: pointer;
+    padding:0 7px 2px 7px;
+    padding-bottom: 2px;
+    border:2px solid #ccc;
+    border-bottom: #fff;
+    background-color: #fff;
+}
+.location_choose:hover .location{
+    display:block;
+}
+.navigation ul .location_choose .location ul li{
+    width:60px;
+    height: 28px;
+    padding: 2px 0;
+}
+/* 导航栏中字体是红颜色的 */
+.navigation ul>li .free{
+    color:#ff0000;
+}
+/* 京东会员 */
+.navigation .dt {
+    padding: 0 7px;
+}
+/* 我的京东 */
+.navigation .ft {
+    width:48px;
+    height: 28px;
+    padding: 0 20px 0 7px;
+    position: relative;
+}
+/* 我的京东下边儿的弹框 */
+.navigation ul .ft .myJd_text{
+    width:48px;
+    height: 28px;
+   
+}
+.navigation ul .ft .myJd{
+    display:none;
+    width:300px;
+    height:300px;
+    position: absolute;
+    left:0;
+    top:30px;
+    background:#fff;
+    border:1px solid #ccc;
+}
 .navigation .spacer {
     overflow: hidden;
     margin: 11px 5px 0;
@@ -45,13 +124,139 @@
     height: 10px;
     background-color: #ccc;
 }
-
 .navigation .log {
     margin-right: 8px;
 }
-
+/* 箭头 */
 .navigation .iconfont {
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
-    transform: rotate(135deg);transform:rotate(135deg);
+    width: 3px;
+    height: 3px;
+    border-left: 2px solid#ccc;
+    border-top: 2px solid #ccc;
+    transform: rotate(222deg);
+    position: relative;
+    left: 59px;
+    top: -34px;
+    display:inline-block;
 }
+
+/* header */
+#header{
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    height:140px;
+}
+#header .w{
+   
+    width: 100%;
+    height: 100%;
+}
+/* header里边儿的logo图 */
+#header .w #logo{
+    width:190px;
+    height: 120px;
+    position: absolute;
+    top: 44.5px;
+    left: 80px;
+    
+}
+#header .w #logo img{
+    width:100%;
+    height:100%;
+}
+/* 搜索栏 */
+#header .form{
+    margin-top:35px;
+    left: 260px;
+    top: 25px;
+    width: 546px;
+    height: 32px;
+    border: 2px solid #e2231a;
+    background: #fff;
+    position: relative;
+}
+#header .form input{
+    width:488px;
+    height:32px;
+    border:none;
+    outline:none;
+    background:transparent;
+}
+.form .search_btn{
+    border:none;
+    width:58px;
+    height: 32px;
+    background:#e1251b;
+    position: absolute;
+    right:0;
+    top:0;
+}
+.form .search_btn img{
+    width:20px;
+    height:22px;
+}
+#header .shop_card{
+    width:130px;
+    height: 34px;
+    border: 1px solid #e3e4e5;
+    padding:0 0 2px 0;
+    position: absolute;
+    right:370px;
+    line-height: 34px;
+    top:90px;
+    overflow: hidden;
+}
+#header .shop_card .card_logo{
+    width:16px;
+    height: 18px;
+    margin-right:13px;
+    float:left;
+    text-align:center;
+    line-height:18px;
+}
+#header .shop_card .card_text{
+    color:#e1251b;
+    float:left;
+    vertical-align:center;
+}
+#header .shop_card .card_logo img{
+    width:100%;
+    height:100%;
+    color:red;
+}
+#header .advertise{ 
+    width:190px;
+    height: 120px;
+}
+#header .advertise a{
+    display:inline-block;
+    width:100%;
+    height: 100%;
+    background:url(/京东/img/广告.webp) no-repeat;
+    position: absolute;
+    right:-1100px;
+    top:80px;
+}
+#text{
+    width:550px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 325px;
+    top: 130px;
+    overflow: hidden;
+}
+#text li{
+    float:left;
+}
+#text li:nth-child(1) a{
+    color:#e1251b;
+}
+#text li a{
+    margin-right:10px;
+    color: #999999;
+    font-size:12px;
+}
+
+
+   

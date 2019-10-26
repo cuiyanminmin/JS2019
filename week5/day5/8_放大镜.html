@@ -18,7 +18,7 @@
         }
 
         .lit_box {
-            width: 200px;
+            width:200px;
             height: 200px;
             border: 1px solid salmon;
             position: relative;
@@ -161,7 +161,7 @@
         var box = document.getElementById(id),
             litBox = box.getElementsByClassName('lit_box')[0],
             mask = box.getElementsByClassName('mask')[0],
-            bigBox = box.getElementsByClassName('big_box')[0],
+            // bigBox = box.getElementsByClassName('big_box')[0],
             // bigImg = bigBox.getElementsByTagName('img')[0];
             bigImg = null;
         /* function init(){
@@ -178,7 +178,7 @@
             div.innerHTML = ` <img src="../day3/img/big.jpg" alt="">`;
             box.appendChild(div);
             bigBox = box.getElementsByClassName('big_box')[0],
-                bigImg = bigBox.getElementsByTagName('img')[0];
+            bigImg = bigBox.getElementsByTagName('img')[0];
         }
         litBox.onmouseleave = function () {
             // init();

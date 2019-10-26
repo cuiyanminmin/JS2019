@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            /* #box {
+                width: 200px;
+                height: 200px;
+                background: red;
+                transform: skew(45deg);
+                animation: qqq 1s infinite linear;
+            } */
+    
+            /* @keyframes qqq {
+                0% {
+                    transform: rotate(0deg);
+                }
+    
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+    
+            #box {
+                margin: auto;
+                width: 400px;
+                perspective: 2000px;
+                margin-top: 250px;
+            }
+    
+            ul {
+                position: relative;
+                transform-style: preserve-3d;
+                list-style: none;
+                transform: rotateX(30deg) rotateY(45deg);
+            }
+    
+            li {
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                left: 0;
+                top: 0;
+                background: steelblue;
+            }
+    
+            li:nth-child(2) {
+                transform: rotateX(90deg);
+                transform-origin: top;
+                background: red;
+            }
+    
+            li:nth-child(3) {
+                transform: rotateX(-90deg);
+                transform-origin: bottom;
+                background: black;
+            }
+    
+            li:nth-child(4) {
+                transform: rotateY(-90deg);
+                transform-origin: left;
+                background: green;
+            }
+    
+            li:nth-child(5) {
+                transform: rotateY(90deg);
+                transform-origin: right;
+                background: rgb(0, 255, 191);
+            }
+    
+            li:nth-child() {
+                transform: translateZ(200px);
+                background: orange;
+            } */
+        </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- 
+        css3 transition(过渡) animation （动画）@keyframs
+             transform        translate     rotate  skew  scale(放大缩小)
+             perspective:2000px;
+             transform-style:preserve-3d   (它的儿子才能当3D用)
+
+        H5  header  footer  main nav  section  articale...
+            input 做了增强  color  date  
+     -->
+    <!-- <input type="text">
+    <datalist id="card">
+        <option value="BMW">
+        <option value="Ford">
+        <option value="Volvo">
+    </datalist> -->
+    <input type="text" id="inp">
+    <ul id="list" style="display: none">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+</body>
+
+</html>
+<script>
+    inp.onclick = function(e){
+        e.stopPropagation();
+    }
+    inp.onfocus = function(e){
+        e.preventDefault();
+        list.style.display = 'block';
+    }
+    // inp.onblur = function(e){//失焦
+    //     setTimeout(()=>{
+    //         list.style.display = 'none'
+    //     },100)
+    // }
+    list.onclick = function(e){
+        e.stopPropagation();
+        if(e.target.nodeName.toLowerCase()==='li'){
+            inp.value = e.target.innerText;
+            list.style.display='none'
+        }
+    }
+    // document.addEventListener('click',function(){
+    //     e.stopPropagation();
+    //     list.style.display = 'none'
+    // },false)
+</script>

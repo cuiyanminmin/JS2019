@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .big_box li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            display: none;
+        }
+
+        .big_box li:nth-child(1) {
+            /* display:block; */
+        }
+
+        .big_box li:target {
+            /* 当前处于目标阶段的li会有当前的样式 */
+            display: block;
+
+        }
+
+        .big_box li:nth-child(1) {
+            animation: bounceIn 1s linear;
+        }
+
+        .big_box li:nth-child(2) {
+            animation: rotateIn 1s linear;
+        }
+
+        .big_box li:nth-child(3) {
+            animation: zoomIn 1s linear;
+        }
+
+        .big_box li:nth-child(4) {
+            animation: flip 1s linear;
+        }
+
+        .lit_box {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            padding-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .lit_box li {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 10px solid rgba(0, 0, 0, 0.6);
+            /* box-sizing: border-box; */
+        }
+
+        @keyframes bounceIn {
+
+            from,
+            20%,
+            40%,
+            60%,
+            80%,
+            to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            20% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1);
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+
+            40% {
+                -webkit-transform: scale3d(0.9, 0.9, 0.9);
+                transform: scale3d(0.9, 0.9, 0.9);
+            }
+
+            60% {
+                opacity: 1;
+                -webkit-transform: scale3d(1.03, 1.03, 1.03);
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+
+            80% {
+                -webkit-transform: scale3d(0.97, 0.97, 0.97);
+                transform: scale3d(0.97, 0.97, 0.97);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: rotate3d(0, 0, 1, -200deg);
+                transform: rotate3d(0, 0, 1, -200deg);
+                opacity: 0;
+            }
+
+            to {
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes flip {
+            from {
+                -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
+                transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+            }
+
+            40% {
+                -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+                transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+            }
+
+            50% {
+                -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+                transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+
+            80% {
+                -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+                transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+
+            to {
+                -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+                transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="big_box">
+            <li id="img1">
+                <img src="./img/1.jpg" alt="">
+            </li>
+            <li id="img2">
+                <img src="./img/2.jpg" alt="">
+            </li>
+            <li id="img3">
+                <img src="./img/3.jpg" alt="">
+            </li>
+            <li id="img4">
+                <img src="./img/4.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="lit_box">
+            <li>
+                <a href="#img1">
+                    <img src="./img/1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img2">
+                    <img src="./img/2.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img3">
+                    <img src="./img/3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img4">
+                    <img src="./img/4.jpg" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+
+</script>
