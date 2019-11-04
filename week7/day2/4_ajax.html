@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>
+<script>
+    //ajax: async javascript and xml
+    //readyState 代表请求状态
+    /* 
+        0 unsent    未发送状态
+        1 opend     已执行过open函数  
+        2 headers-received 已经接收相应头
+        3 loading   正在加载相应体
+        4 done      请求完成
+
+        0-1是由JS控制的
+        1-2 2-3 3-4 都是由http控制的
+     */
+
+     //access-control-allow-origin: 支持跨域的 意思
+    let xhr = new XMLHttpRequest();
+    xhr.open('get','./data.xml',true); //从0编程1  同步的(false写成同步之后直接从1编程了4)
+    xhr.onreadystatechange = function(){
+        // console.log(xhr.readyState);
+        if(xhr.readyState ==4 &&xhr.status==200){
+            console.log(xhr.response);
+            box.appendChild(xhr.responseXML.firstChild);
+            document.querySelector('span').onclick = function(){
+                alert(this.getAttribute('data-id'))
+            }
+        }
+    }
+    xhr.timeout =1000;//最长请求时间；超过这个时间之后自动结束请求
+    xhr.onerror = function(e){
+        //在请求失败的时候触发；需要是绝对地址；
+        console.log(e);
+    }
+    xhr.ontimeout = function(){
+        console.log('超时');
+    }
+    xhr.onabort = function(){
+        //主动打断请求的时候 会触发
+        console.log('打断请求');
+    }
+    xhr.send();
+    setTimeout(()=>{
+        // xhr.abort()  //主动打断http请求;请求还没有完成的时候 可以打断；
+    },10)
+    // xhr.abort();
+
+
+    //timeout = 2000毫秒        ontimeout(超过毫秒数)
+    //abort()   取消http请求    onbort
+</script>

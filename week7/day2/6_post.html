@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let xhr = new XMLHttpRequest();
+    //post 不存在走缓存这一说
+    xhr.open('post','。/data.json',true);//post请求不会走缓存的
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState ==4){
+            if(/200|304/.test(xhr.status)){
+                let t = xhr.getResponseHeader('date');//获取响应头
+                // xhr.getAllResponseHeaders() //获取所有的响应头
+                console.log(new Date(t));
+                console.log(xhr.response);
+            }
+            else if(/[45]\d{2}/.test(xhr.status)){
+                console.log('失败');
+            }
+        } 
+    }
+    xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+    let obj={
+            a:12,
+            b:13
+        }
+    // xhr.send(JSON.stringify(obj)); //payload  JSON字符串  （这种方式传过去是字符串的形式）
+    
+    //怎么准成form Data 的格式；首先把要传的对象转成 search字符串； 然后再去更改请求头的content-type属性
+    let str ='';
+    for(let k in obj){
+        str +=`${k}=${obj[k]}&`
+    }
+    xhr.send(str);
+</script>

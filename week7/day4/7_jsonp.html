@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<!-- <script>
+    function qqq(data){
+        console.log(data);
+    }
+    // script没有跨域 让后台生成一段代码传送过来，后台的代码执行，传过来一个实参  cb是一个函数，后边儿跟的就是对应的函数名，有的时候是后台指定好的 一个函数名
+</script>
+<script src="https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1&cb=qqq"></script> -->
+
+
+<script>
+    function jsonp(url,callback){
+        let script = document.createElement('script');
+        let str = 'my'+Date.now();
+        window[str] = function(data){
+            callback && callback(data);
+            document.body.removeChild(script);
+            delete window[str];
+        }
+        script.src = url += '&cb='+str;
+        document.body.appendChild(script);
+        
+    }
+    jsonp('https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1&',function(data){
+        console.log(data); 
+    });
+</script>

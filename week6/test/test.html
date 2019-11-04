@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <ul id="ul">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </body>
+        </html>
+        <script>
+            //事件委托 利用的 就是 事件的冒泡传播机制；
+            let ul = document.getElementById('ul');
+            ul.onclick = function(e){
+                console.dir(e)
+                console.log(e.target)//点击的元素
+                e = e || window.event;
+                var tar = e.target || e.srcElement;
+                console.dir(tar);
+                if(tar.nodeName.toLowerCase()!=='li')return;//nodeName是对应的标签名 大写的需要转成小写
+                alert(tar.innerText)//弹出文本区域
+            }
+        </script>

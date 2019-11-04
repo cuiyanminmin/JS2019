@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background:red;
+        }
+        @media all and (max-width:800px){
+            body{
+                background:blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        css3 transition 
+            box.addEventListener('transitionend',function(),{passive:true}//先执行默认事件再执行绑定事件，阻止默认事件阻止不了，capture:true 在捕获阶段触发)
+            animation(执行) move
+                 @keyframe(声明)
+        H5  seo
+        em rem  vw/vh
+
+        viewport
+        dpr(设备像素比):1 2 3 
+
+        1rem 100px;针对设计稿；设计稿是640px --100px;w（屏幕宽）--x(1个rem)
+                            100/640 = x/w ----->x=100*w/640
+                            x就是html的font-size
+
+        淘宝的flexible.js 屏幕分成10份；1rem = w/10;780的设计稿上量出100px;100/750*10--->100/75rem
+        @media all and (max-width:600px){
+            //这里的样式只在宽度小于等于600像素的时候起作用
+        }
+     */
+</script>

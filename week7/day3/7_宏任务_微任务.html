@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    console.log('script start')
+    let promise1 = new Promise(function (resolve) {
+        console.log('promise1')
+        resolve()
+        console.log('promise1 end')
+    }).then(function () {
+        console.log('promise2')
+    })
+    setTimeout(function () {
+        console.log('settimeout')
+    })
+    console.log('script end')
+    //Promise的微任务  then catch
+    //宏任务  定时器 Promise
+    //定时器跟promise同时出现时先执行promise的宏任务再执行定时器的
+
+    //当最外层有一个setTimeout 的时候，如果promise执行的时候有一个setTimeout()的时候，先执行外边儿的setTimeout然后再执行里边儿的  例子
+//*****************************************************************************************
+    console.log('script start')
+    setTimeout(function () {
+        console.log('settimeout')
+    })
+    let promise1 = new Promise(function (resolve) {
+        console.log('promise1')
+        setTimeout(() => {
+            resolve()
+        })
+        console.log('promise1 end')
+    }).then(function () {
+        console.log('promise2')
+    })
+    console.log('script end')
+
+//******************************************************************************************
+
+    async function async1() {
+        console.log('async1 start');
+        await async2();
+        console.log('async1 end')
+    }
+    async function async2() {
+        console.log('async2')
+    }
+    console.log('script start');
+    async1();
+    console.log('script end')
+
+//script start async1 start async2 script end async1 end
+
+
+//*******************************************************************************************
+    async function async1() {
+        console.log('async1 start');
+        await async2();     //微任务  
+        console.log('async1 end'); //理解成then Promise实例then的东西 微任务
+    }
+    async function async2() {
+        console.log('async2');
+    }
+    console.log('script start');
+    setTimeout(function () {
+        console.log('setTimeout');
+    }, 0)
+    async1();
+    new Promise(function (resolve) {
+        console.log('promise1');
+        resolve();
+    }).then(function () {
+        console.log('promise2');
+    });
+    console.log('script end');
+
+
+  //script start async1 start async2 promise1 script end async1 end promise2 setTimeout
+    //then是微任务
+</script>

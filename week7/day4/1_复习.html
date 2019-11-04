@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //onabord   //请求被打断
+    //ontimeout  超时
+    //setRequestHeader() //参数不能是中文 content-type x-www    
+    //getRequestHeader() 
+    //send(post请求体 只能是字符串) 
+
+    /* 
+        ajax({
+            method:
+            data:{}
+            url:
+            cache
+            async
+            headers:{}
+            success
+            error
+        })
+        onready 的4个
+
+        200 
+        304（协商缓存）   307  
+        //发灰的就是走缓存的
+    */
+
+    /* 
+        全局配置：
+        axios.defaults.baseURL = '';
+
+        请求拦截器 //所有请求发送之前都会被拦截   config
+        响应拦截器  //响应的时候默认返回的是response.data  每个项目里都会有一个响应拦截
+
+        axios.get(url,{params:{a:12,b:13}})
+        axios.post(url,{a:12,b:13})
+        axios({
+            method:,
+            params:,//get必写的
+            data:{},//post的
+            headeers:{},
+        })
+
+        let http = axios.create({
+            headers:{}
+            baseURL:
+            requestTransform(){
+
+            },
+            timeout:
+            
+        })
+    */
+   let p1 = new Promise(function(res,rej){
+       setTimeout(()=>{
+           res(6666);
+           console.log('3s')
+       },3000);
+   })
+   async function qqq(){
+       console.log(111);
+       let p = await p1;//p1 必须是promise实例
+       console.log(p);
+   }
+   qqq();
+   //宏任务  定时器 Promise ajax
+   //微任务  then catch
+   //event loop
+</script>

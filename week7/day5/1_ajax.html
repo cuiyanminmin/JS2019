@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   /*  let xhr = new XMLHttpRequest();
+    //get heade(只获取响应头) delete ;post options put。。。
+    xhr.open(type,url,async);
+    //ontimeout                      onabort//被打断
+    //timeout = 2000超过2秒之后打断    abort主动打断
+    xhr.onreadystatechange = function(){
+        //readyState 0(opend) 1 2 3 4
+        //status 200 301（永久重定向） 302（临时重定向） 304（协商缓存） 307 403(访问被拒绝) 404（） 405（方法用错了）
+        if(xhr.status ==4){
+            if(/2\d{2}|304/.test(xhr.status)){
+
+            }else if(/[45]\d{2}/.test(xhr.status)){
+
+            }
+        }
+    }
+    xhr.send('123456');//get的时候传不出去，post的时候才能传出去 */
+
+    //websocket//不涉及跨域
+    //socket.io 它是 webSocket的一个封装好的库；
+    let ws = new WebSocket('wss://docs.qq.com/socket.io/?gtag=main_page_p.24092244&EIO=3&transport=websocket');
+    ws.onopen = function(e){
+        //链接打通的时候
+    }
+    ws.onmessage = function(e){
+        //前端接收到后端推送的消息
+        console.log(e);
+    }
+    ws.onerror = function(e){
+        //链接出现失败的时候会触发
+    }
+    ws.onclose = function(e){
+        //链接被关闭的时候
+    }
+    // ws.send({a:123})//发送消息  //需要等打通之后再发送消息
+</script>
