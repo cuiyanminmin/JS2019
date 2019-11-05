@@ -7,7 +7,7 @@ $(function(){
         $as = $menuBox.find('a');//全部的a标签
 
         //从本地获取用户名
-        $nameBox.html('您好：'+localStorage.getItem('username'))
+        $nameBox.html('您好：'+localStorage.getItem('customerUrl'))
         //点击退出要做的事
     $outBtn.on('click',function(){
         alert('确定退出？',{
@@ -103,10 +103,10 @@ $(function(){
                             客户管理
                         </h3>
                         <nav class="item">
-                            <a href="./page/customerlist.html" target='iframeBox'>我的客户</a>
+                            <a href="./page/customerlist.html#my" target='iframeBox'>我的客户</a>
                             ${
                                 power.indexOf('allcustomer') != -1 ?
-                                `<a href="./page/customerlist.html" target='iframeBox'>全部客户</a>`:''
+                                `<a href="./page/customerlist.html#all" target='iframeBox'>全部客户</a>`:''
                             }
                             ${
                                 power.indexOf('departcustomer') != -1 ?
@@ -122,21 +122,40 @@ $(function(){
     $iframe.attr('src',url);//跳转到第一个url
 
     //监听hash的改变 去判断显示客户管理还是组织结构
-    function hash(){
-        let $tar =$menuBox.find('.itemBox:last-child');
-        if(location.hash =='#customer'){
-            //当前要展示客户管理
-            $tar.show().siblings().hide();
-            let url =$tar.find('a').eq(0).attr('href');
-            $iframe.attr('src',url)
-        }
-        else{
-            $tar.hide().siblings().show()
-            $as = $menuBox.find('a');//渲染完成之后再去更新变量
-            let url = $as.eq(0).attr('href')
-            $iframe.attr('src',url);//跳转到第一个url
+    function hash() {
+        let $tar = $menuBox.find('.itemBox:last-child')
+        if(location.hash == '#customer'){
+            // 当前要展示客户管理
+            $tar.show().siblings('.itemBox').hide();
+            let currentUrl = sessionStorage.getItem('customerUrl');
+            if(currentUrl){
+                $iframe.attr('src',currentUrl);// 跳转到当前操作列表
+            }else{
+                let url = $tar.find('a').eq(0).attr('href');
+                $iframe.attr('src',url);
+            }
+        }else{
+            $tar.hide().siblings('.itemBox').show()
+            $as = $menuBox.find('a');// 渲染完成之后再去更新变量
+            let currentUrl = sessionStorage.getItem('currentUrl');
+            if(currentUrl){
+                $iframe.attr('src',currentUrl);// 跳转到当前操作列表
+            }else{
+                let url = $as.eq(0).attr('href')
+                $iframe.attr('src',url);// 跳转到第一个url
+            }
         }
     }
     hash();
-    window.addEventListener('hashchange',hash)
+    window.addEventListener('hashchange',hash);
+
+    //实现导航栏的折叠效果
+    
+    function  foldFn(){
+        let $h3s = $('.itemBox h3');
+        $h3s.on('click',function(){
+            $(this).siblings('.item').slideToggle('fast')//toggle让下边儿的隐藏  
+        })
+    }
+    foldFn()
 })
