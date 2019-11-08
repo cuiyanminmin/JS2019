@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //http 三握四挥：https 和 http
+    //ajax  timeout abort ontimeout onabort
+    //   readyState:0-4; status http状态码  强制缓存 协商缓存
+    //axios get post 拦截器  'content-type'  为了设置form data 形式的
+    //fetch 基于promise(url,{}).then(()=>{},()=>{}).then()
+    //data.text()   data.json() 转成JSON对象
+
+    // fetch('./data.json').then((data)=>{
+    //         return data.json()//只能用一次
+    // }).then((data)=>{
+    //     console.log(data);
+    // })
+
+    //localStorage  cookie 
+    //PromiseA+
+
+    //webSocket  socket.io 基于webSocket的封装   四个事件 onopen onmessage onerror onclose :两个方法 send close
+
+    //跨域：  jsonp：利用了script 的src属性 不存在跨域的问题这个特性  跨域：同源策略
+    //          cors  
+    //          postMessage
+</script>
+<script>
+    function f(s){
+        if(s.indexOf('[')<0)return s
+        s = s.replace(/(\d+)\[([a-zA-Z]+)\]/,function(a,b,c){
+            let ss='';
+            for(let i=0;i<b;i++){
+                ss+=c;
+            }
+            return ss;
+        })
+        return s.indexOf('[')>0?f(s):s
+    }
+    f('3[a]20[bc]')
+</script>

@@ -22,6 +22,7 @@ $(function(){
                     handled:function(){
                         //点击关闭按钮的时候执行
                         location.href = './index.html'
+                        //location.href = '网址'  页面跳转
                     }
                 })
                 //把权限信息存储到本地

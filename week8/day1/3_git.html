@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        初始化用户名密码
+        git config --global user.name
+        git config --global user.email
+
+        github   gitlab  码云 腾讯云   （服务端）。。。 这些都是git服务端
+        git add . 把所有修改过的文件都上传到 缓存区
+        git commit -m '备注' 把缓存区的内容传到历史区
+        git push origin（桥梁名） nrc(分支名)  
+        Sourcetree  git的使用工具
+        如果两个人同时上传文件先上传的人没有问题，后上传的人会提示下拉一下，因为版本已经升级了，自己的版本还是老版本  conflict(系统提示语)重复项  出现冲突之后人工修改 修改过后不能直接push 需要再 git add.     git commit -m 'm'
+        branch 分支
+
+        git clone 远程仓库
+
+        git branch 用来查看分支的
+        git branch dev（新分支名） 多了一个分支（dev） 新建分支
+        git checkout 分支名        切换分支；
+        git checkout -b 新分支名    新建并且切换到新的分支（两个命令合成一个命令了）
+
+        git merge 分支名   把对应分支的内容合并到当前分支上
+                把dev分支的内容合并到 master 分支
+                    首先切换到master分支，然后执行git merge dev
+    
+        git branch -D 分支名     删除分支（不能站在这个分支上删除，需要先切换到其他的分支删除）
+
+        git log   生成版本号
+        git reset --hard 版本号 
+
+        新建一个分支首次提交git push 时时会有问题了，按照提示提交就可以了
+        ls 查看  
+        touch 新建  
+        vi 是编辑
+        cat 查看
+        rm 删除
+        cd ../回到上一级
+
+        git remote add origin 桥梁地址  （跟远程仓库建立连接）
+        git status 
+        git push 放到远程仓库   出现什么命令时是成功状态？
+        Fort 可以把别人远程仓库的东西克隆一份放到自己的远程仓库上
+
+        git clone 只有一个分支
+        git checkout -b   新分支名   新建一个分支并且切换到这个分支
+        git pull 一下会有提示根据下边儿的提示 把对应的分支拉下来 ，
+        然后在git pull一下  对应的分支里的代码就拉下来了；
+        拉下来以后在自己的分支里再新建一个分支（以免把别人的代码给弄坏了
+        ）
+
+
+    */
+</script>
